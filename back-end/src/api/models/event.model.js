@@ -38,26 +38,20 @@ const eventSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-/**
- * Add your
- * - pre-save hooks
- * - validations
- * - virtuals
- */
-eventSchema.pre('save', async function save(next) {
-  try {
-    if (!this.isModified('password')) return next();
+// /**
+//  * Add your
+//  * - pre-save hooks
+//  * - validations
+//  * - virtuals
+//  */
+// eventSchema.pre('save', async function save(next) {
+//   try {
 
-    const rounds = env === 'test' ? 1 : 10;
-
-    const hash = await bcrypt.hash(this.password, rounds);
-    this.password = hash;
-
-    return next();
-  } catch (error) {
-    return next(error);
-  }
-});
+//     return next();
+//   } catch (error) {
+//     return next(error);
+//   }
+// });
 
 /**
  * Methods
@@ -65,7 +59,7 @@ eventSchema.pre('save', async function save(next) {
 eventSchema.method({
   transform() {
     const transformed = {};
-    const fields = ['id', 'name', 'email', 'picture', 'role', 'createdAt'];
+    const fields = ['id', 'firstName', 'firstName', 'email', 'createdAt'];
 
     fields.forEach((field) => {
       transformed[field] = this[field];
@@ -74,6 +68,34 @@ eventSchema.method({
     return transformed;
   }
 })
+
+eventSchema.statics = {
+
+  /**
+   * Return new validation error
+   * if error is a mongoose duplicate key error
+   *
+   * @param {Error} error
+   * @returns {Error|APIError}
+   */
+  checkDuplicateEmail(error) {
+    if (error.name === 'MongoError' && error.code === 11000) {
+      return new APIError({
+        message: 'Validation Error',
+        errors: [{
+          field: 'email',
+          location: 'body',
+          messages: ['"email" already exists'],
+        }],
+        status: httpStatus.CONFLICT,
+        isPublic: true,
+        stack: error.stack,
+      });
+    }
+    return error;
+  }
+
+}
 
 /**
  * @typedef Event

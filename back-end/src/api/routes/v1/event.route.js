@@ -1,12 +1,9 @@
 const express = require('express');
 const validate = require('express-validation');
 const controller = require('../../controllers/event.controller');
-const {
-  createEvent
-} = require('../../validations/event.validation');
+const { createEvent } = require('../../validations/event.validation');
 
 const router = express.Router();
-
 
 router
   .route('/')
@@ -20,9 +17,9 @@ router
    * @apiHeader {String} Authorization   Event's access token
    *
    * @apiParam  {String}             email     Event's email
-   * @apiParam  {String{6..128}}     password  Event's password
-   * @apiParam  {String{..128}}      [name]    Event's name
-   * @apiParam  {String=Event,admin}  [role]    Event's role
+   * @apiParam  {String{..128}}      [firstName]    Event's first name
+   * @apiParam  {String{..128}}      [lastName]    Event's last name
+   * 
    *
    * @apiSuccess (Created 201) {String}  id         Event's id
    * @apiSuccess (Created 201) {String}  name       Event's name

@@ -2,7 +2,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import EventFormFields from './EventFormFields';
 
@@ -26,22 +25,14 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
     },
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-    width: "100%"
-  },
+  }
 }));
 
 
 export default function EventForm() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -53,28 +44,13 @@ export default function EventForm() {
 
   return (
     <React.Fragment>
-
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
             Event Inscription
           </Typography>
-          
           <React.Fragment>
-            
-              <React.Fragment>
-                <EventFormFields />
-                <div className={classes.buttons}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                   Submit
-                  </Button>
-                </div>
-              </React.Fragment>
+              <EventFormFields />
           </React.Fragment>
         </Paper>
       </main>
