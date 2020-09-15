@@ -8,6 +8,7 @@ import { Field, reduxForm, useSelector } from 'redux-form';
 import submit from './submit';
 import store from '../../reducers/index'
 import moment from 'moment'
+import TextInput from '../common/TextInput'
 
 const useStyles = makeStyles((theme) => ({
   buttons: {
@@ -69,50 +70,16 @@ const EventFormFields = props => {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
-            <Field name="firstName" component={(props) => {
-              return (
-                <TextField
-                  required
-                  label="First name"
-                  fullWidth
-                  autoComplete="given-name"
-                  {...props.input}
-                />
-              )
-            }
-            } type="text" />
+            <Field name="firstName" label="First Name" component={TextInput} type="text" />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Field name="lastName" value="sadfsfa" component={(props) =>
-              <TextField
-                required
-                id="lastName"
-                name="lastName"
-                label="Last name"
-                fullWidth
-                autoComplete="family-name"
-                {...props.input}
-              />
-            } type="text" />
+            <Field name="lastName" label="Last Name" value="sadfsfa" component={TextInput} type="text" />
           </Grid>
-          <Grid item xs={6}>
-            <Field name="email" component={(props) =>
-              <TextField
-                required
-                label="Email"
-                fullWidth
-                autoComplete="shipping address-line1"
-                style={{ marginTop: '6%' }}
-                {...props.input}
-              />
-            } type="email" />
+          <Grid item xs={6} style={{paddingTop:'5%'}}>
+            <Field name="email" label="Email" component={TextInput} type="email" />
           </Grid>
           <Grid item xs={6} sm={6}>
-            <Field name="eventDate" component={(props) =>
-              <DatePicker
-                {...props}
-              />
-            } type="any" initialValue={moment(Date.now()).format('YYYY-MM-DD')} />
+            <Field name="eventDate" component={DatePicker} type="any" initialValue={Date.now()}/>
           </Grid>
         </Grid>
         <div className={classes.buttons}>
@@ -141,6 +108,7 @@ const mapStateToProps = (state) => {
 }
 export default reduxForm({
   form: 'simple',
-  enableReinitialize: true
+  enableReinitialize: true,
+  validate
 }, mapStateToProps)(EventFormFields);
 
