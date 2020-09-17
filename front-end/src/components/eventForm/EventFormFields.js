@@ -5,8 +5,8 @@ import DatePicker from '../common/DatePicker';
 import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm, useSelector } from 'redux-form';
-import submit from './submit';
-import store from '../../reducers/index'
+import submitAction from '../../state/actions/eventActions';
+import store from '../../state/reducers/index'
 import moment from 'moment'
 import TextInput from '../common/TextInput'
 
@@ -59,7 +59,7 @@ const EventFormFields = props => {
 
   return (
     <React.Fragment>
-      <form onSubmit={handleSubmit(submit)} initialValues={() => {
+      <form onSubmit={handleSubmit(submitAction)} initialValues={() => {
         return {
           firstName: 'rajat',
           lastName: 'sd',

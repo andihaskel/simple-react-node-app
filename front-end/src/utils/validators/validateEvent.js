@@ -2,7 +2,6 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
 const validate = values => {
-    console.log('asdaddddddd')
   const errors = {}
   if (!values.username) {
     errors.username = 'Required'
