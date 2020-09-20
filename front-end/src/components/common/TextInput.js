@@ -2,13 +2,24 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 
 
-const TextInput = props =>
-    <TextField errorText={props.touched && props.error}
+const TextInput = ({
+    input,
+    label,
+    type,
+    meta: { touched, error, warning }
+}) => (
+        <div>
+            <TextField errorText={touched && error}
                 required
-                label={props.label}
+                label={label}
                 fullWidth
                 autoComplete="given-name"
-                {...props.input}
-    />;
+                {...input}
+            />
+            {touched &&
+                ((error && <span>{error}</span>) ||
+                    (warning && <span>{warning}</span>))}
+        </div>
+    )
 
 export default TextInput

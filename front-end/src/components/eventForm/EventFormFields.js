@@ -9,6 +9,7 @@ import submitAction from '../../state/actions/eventActions';
 import store from '../../state/reducers/index'
 import moment from 'moment'
 import TextInput from '../common/TextInput'
+import validate from '../../utils/validators/validateEvent'
 
 const useStyles = makeStyles((theme) => ({
   buttons: {
@@ -22,64 +23,28 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const validate = val => {
-  console.log('validate');
-  const errors = {};
-  if (!val.firstName) {
-    console.log('First Name is required');
-    errors.firstName = 'Required';
-  }
-  if (!val.lastName) {
-    console.log('Last Name is required');
-    errors.lastName = 'Required';
-  }
-  if (!val.email) {
-    console.log('email is required');
-    errors.email = 'Required';
-  } else if (!/^.+@.+$/i.test(val.email)) {
-    console.log('email is invalid');
-    errors.email = 'Invalid email address';
-  }
-  if (!val.age) {
-    errors.age = 'Required'
-  } else if (isNaN(Number(val.age))) {
-    errors.age = 'Must be a number'
-  } else if (Number(val.age) < 18) {
-    errors.age = 'Sorry, you must be at least 18 years old'
-  }
-  return errors;
-};
 
 const EventFormFields = props => {
   const classes = useStyles();
-  const { handleSubmit, eventDate, pristine, reset, submitting, error } = props
-  // const state = useSelector(state => state)
-
-  console.log(store.getState());
+  const { handleSubmit, eventDate, pristine, reset, submitting} = props
 
   return (
     <React.Fragment>
-      <form onSubmit={handleSubmit(submitAction)} initialValues={() => {
-        return {
-          firstName: 'rajat',
-          lastName: 'sd',
-          email: 'asdf',
-          eventDate: Date.now()
-        };
-      }} >
+      <form onSubmit={handleSubmit(submitAction)}>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} >
             <Field name="firstName" label="First Name" component={TextInput} type="text" />
+           
           </Grid>
           <Grid item xs={12} sm={6}>
             <Field name="lastName" label="Last Name" value="sadfsfa" component={TextInput} type="text" />
           </Grid>
-          <Grid item xs={6} style={{paddingTop:'5%'}}>
+          <Grid item xs={6} style={{ paddingTop: '5%' }}>
             <Field name="email" label="Email" component={TextInput} type="email" />
           </Grid>
           <Grid item xs={6} sm={6}>
-            <Field name="eventDate" component={DatePicker} type="any" initialValue={Date.now()}/>
+            <Field name="eventDate" component={DatePicker} type="any" initialValue={Date.now()} />
           </Grid>
         </Grid>
         <div className={classes.buttons}>
