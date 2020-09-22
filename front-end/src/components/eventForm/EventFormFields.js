@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm, useSelector } from 'redux-form';
 import submitAction from '../../state/actions/eventActions';
-import store from '../../state/reducers/index'
+import store from '../../state/store'
 import moment from 'moment'
 import TextInput from '../common/TextInput'
 import validate from '../../utils/validators/validateEvent'
@@ -35,7 +35,6 @@ const EventFormFields = props => {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} >
             <Field name="firstName" label="First Name" component={TextInput} type="text" />
-           
           </Grid>
           <Grid item xs={12} sm={6}>
             <Field name="lastName" label="Last Name" value="sadfsfa" component={TextInput} type="text" />

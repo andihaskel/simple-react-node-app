@@ -1,13 +1,17 @@
-import { combineReducers, createStore } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+import * as types from '../actions/types';
 
-const reducers = combineReducers({
-  form: formReducer,
-  state: (state = {}) => state,
-})
+  
+  const INITIAL_STATE = {};
+  
+  export default (state = INITIAL_STATE, action) => {
 
-const store = createStore(
-  reducers
-)
+    switch (action.type) {
 
-export default store;
+      case types.CREATE_EVENT: {  
+        return { ...state };
+      }
+        
+      default:
+        return { ...state, error: ""};
+    }
+  };
