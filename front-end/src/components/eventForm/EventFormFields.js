@@ -37,13 +37,13 @@ const EventFormFields = props => {
             <Field name="firstName" label="First Name" component={TextInput} type="text" />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Field name="lastName" label="Last Name" value="sadfsfa" component={TextInput} type="text" />
+            <Field name="lastName" label="Last Name" component={TextInput} type="text" />
           </Grid>
           <Grid item xs={6} style={{ paddingTop: '5%' }}>
             <Field name="email" label="Email" component={TextInput} type="email" />
           </Grid>
           <Grid item xs={6} sm={6}>
-            <Field name="eventDate" component={DatePicker} type="any" initialValue={Date.now()} />
+            <Field name="eventDate" component={DatePicker} type="any" />
           </Grid>
         </Grid>
         <div className={classes.buttons}>
