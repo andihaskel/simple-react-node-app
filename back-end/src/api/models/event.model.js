@@ -4,13 +4,9 @@ const { omitBy, isNil } = require('lodash');
 const APIError = require('../utils/APIError');
 const { env, jwtSecret, jwtExpirationInterval } = require('../../config/vars');
 
-/**
-* User Roles
-*/
-const roles = ['user', 'admin'];
 
 /**
- * User Schema
+ * Event Schema
  * @private
  */
 const eventSchema = new mongoose.Schema({
@@ -34,24 +30,13 @@ const eventSchema = new mongoose.Schema({
     index: true,
     trim: true,
   },
+  date: {
+    type: Date,
+    index: true,
+  },
 }, {
   timestamps: true,
 });
-
-// /**
-//  * Add your
-//  * - pre-save hooks
-//  * - validations
-//  * - virtuals
-//  */
-// eventSchema.pre('save', async function save(next) {
-//   try {
-
-//     return next();
-//   } catch (error) {
-//     return next(error);
-//   }
-// });
 
 /**
  * Methods
@@ -59,7 +44,7 @@ const eventSchema = new mongoose.Schema({
 eventSchema.method({
   transform() {
     const transformed = {};
-    const fields = ['id', 'firstName', 'firstName', 'email', 'createdAt'];
+    const fields = ['id', 'firstName', 'lastName', 'email', 'date'];
 
     fields.forEach((field) => {
       transformed[field] = this[field];

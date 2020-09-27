@@ -5,27 +5,15 @@
   "private": false,
   "license": "MIT",
   "engines": {
-    "node": ">=8",
-    "yarn": "*"
+    "node": ">=8"
   },
   "scripts": {
-    "prestart": "yarn docs",
-    "start": "cross-env NODE_ENV=production pm2 start ./src/index.js",
-    "dev": "nodemon ./src/index.js",
+    "start": "nodemon ./src/index.js",
     "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
     "lint:fix": "yarn lint --fix",
     "lint:watch": "yarn lint --watch",
-    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --recursive src/api/tests",
-    "test:unit": "cross-env NODE_ENV=test mocha src/api/tests/unit",
-    "test:integration": "cross-env NODE_ENV=test mocha --timeout 20000 --exit src/api/tests/integration",
-    "test:watch": "cross-env NODE_ENV=test mocha --watch src/api/tests/unit",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "postcoverage": "opn coverage/lcov-report/index.html",
-    "validate": "yarn lint && yarn test",
-    "postpublish": "git push --tags",
-    "deploy": "sh ./deploy.sh",
-    "docs": "apidoc -i src -o docs",
-    "postdocs": "opn docs/index.html"
+    "test": "mocha --timeout 20000 --exit src/api/tests",
+    "validate": "npm lint && npm test"
   },
   "keywords": [
     "express",
@@ -42,8 +30,6 @@
     "istanbul",
     "nyc",
     "eslint",
-    "Travis CI",
-    "coveralls",
     "REST",
     "API",
     "boilerplate",
@@ -52,11 +38,9 @@
   ],
   "dependencies": {
     "axios": "^0.19.0",
-    "bluebird": "^3.5.0",
     "body-parser": "^1.17.0",
     "compression": "^1.6.2",
     "cors": "^2.8.3",
-    "cross-env": "^6.0.3",
     "dotenv-safe": "^6.0.0",
     "express": "^4.15.2",
     "express-validation": "^1.0.2",
@@ -67,7 +51,6 @@
     "mongoose": "^5.2.17",
     "morgan": "^1.8.1",
     "ngrok": "^3.3.0",
-    "pm2": "^4.2.0",
     "pug": "^2.0.4",
     "uuid": "^3.1.0",
     "winston": "^3.1.0"
@@ -83,7 +66,6 @@
     "husky": "^3.0.7",
     "mocha": "^6.2.2",
     "nodemon": "^2.0.1",
-    "nyc": "^14.1.1",
     "opn-cli": "^5.0.0",
     "sinon": "^7.5.0",
     "sinon-chai": "^3.0.0",

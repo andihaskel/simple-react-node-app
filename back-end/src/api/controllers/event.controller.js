@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const Event = require('../models/event.model');
 
 /**
- * Create new user
+ * Create new event
  * @public
  */
 exports.create = async (req, res, next) => {

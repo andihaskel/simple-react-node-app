@@ -43,7 +43,7 @@ const EventFormFields = props => {
             <Field name="email" label="Email" component={TextInput} type="email" />
           </Grid>
           <Grid item xs={6} sm={6}>
-            <Field name="eventDate" component={DatePicker} type="any" />
+            <Field name="date" component={DatePicker} type="any" />
           </Grid>
         </Grid>
         <div className={classes.buttons}>

@@ -32,8 +32,7 @@ export const submitEventForm = (values, dispatch) => {
   //   timesUsed: 0,
   //   createdBy: codeDetails.email
   // }
-  const url = process.env.REACT_APP_REST_API_LOCATION + '/v1/events';
-  console.log(url)
+  const url = process.env.REACT_APP_REST_API_LOCATION + 'v1/events';
   axios.post(url, newEvent).then(() => {
     return dispatch({
       type: types.CREATE_EVENT,
