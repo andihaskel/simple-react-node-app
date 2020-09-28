@@ -2,7 +2,7 @@
 
 ### Set up 
 
-- Install dependencies both in the back-end and front-end folder by running the following command
+- Install dependencies both in the back-end and front-end folder by running the following command on both folders
 ```sh
 $ npm i
 ```
