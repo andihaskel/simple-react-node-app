@@ -16,7 +16,7 @@ app.listen(port, () => {
             logger.info(`localhost: ${port} is available at ${ngrokEndpoint}`);
         })()
     } catch (ex){
-        logger.error(err);
+        logger.error(ex);
     }
 
 });

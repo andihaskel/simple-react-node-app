@@ -117,3 +117,5 @@
 {"message":"MongoDB connection error: MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017","level":"error"}
 {"message":"server started on port 3000 (undefined)","level":"info"}
 {"message":"localhost: 3000 is available at https://7c17d1baa01d.ngrok.io","level":"info"}
+{"message":"server started on port 3000 (undefined)","level":"info"}
+{"message":"localhost: 3000 is available at https://2020e5a86578.ngrok.io","level":"info"}

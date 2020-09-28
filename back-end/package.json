@@ -9,9 +9,7 @@
   },
   "scripts": {
     "start": "nodemon ./src/index.js",
-    "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
-    "lint:fix": "yarn lint --fix",
-    "lint:watch": "yarn lint --watch",
+    "lint": "./node_modules/.bin/eslint ./ --ignore-path .gitignore --ignore-pattern internals/scripts",
     "test": "mocha --timeout 20000 --exit src/api/tests",
     "validate": "npm lint && npm test"
   },
@@ -47,7 +45,6 @@
     "helmet": "^3.5.0",
     "http-status": "^1.0.1",
     "joi": "^10.4.1",
-    "lodash": "^4.17.4",
     "mongoose": "^5.2.17",
     "morgan": "^1.8.1",
     "ngrok": "^3.3.0",
@@ -57,6 +54,7 @@
   },
   "devDependencies": {
     "apidoc": "^0.17.5",
+    "babel-eslint": "^10.1.0",
     "chai": "^4.1.0",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.0",

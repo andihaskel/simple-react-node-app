@@ -3,7 +3,6 @@
 const request = require('supertest');
 const httpStatus = require('http-status');
 const { expect } = require('chai');
-const { some, omitBy, isNil } = require('lodash');
 const app = require('../../index');
 const Event = require('../models/event.model');
 
@@ -34,7 +33,7 @@ describe('Events API', async () => {
     await Event.insertMany([dbEvents.EventTest1, dbEvents.EventTest2]);
   });
 
-  eventTest3 = {
+  var eventTest3 = {
     email: 'test3@gmail.com',
     firstName: 'Paul',
     lastName: 'Stark',
