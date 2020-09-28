@@ -26,6 +26,13 @@ Tests can be ran by running the following command on the back-end folder
 ```sh
 npm run test
 ```
+### Code Syntax Analyzis
+
+Analyze code to find problems by running the following command
+```sh
+npm run lint
+```
+
 
 
 
