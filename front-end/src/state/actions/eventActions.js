@@ -16,6 +16,7 @@ export const submitEventForm = (values, dispatch) => {
     });
   }).catch(error => {
     toast.error(error.response.data.errors[0].messages[0])
+    throw new SubmissionError({ _error: error.response.data.errors[0].messages[0] })
   })
 
 };
