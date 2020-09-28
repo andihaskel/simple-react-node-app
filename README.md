@@ -1,7 +1,6 @@
 ## Instructions
 
-### Set up 
-#### Back-end
+### Back-end set up 
 
 - Install dependencies by running the following command on the back-end folder
 ```sh
@@ -17,7 +16,7 @@ $ npm start
 ```
 - Copy the ngrok URL that appears on the console. It will create a public HTTPS url that runs locally on your development machine. 
 
-#### Front-end
+### Front-end set up 
 
 - Install dependencies by running the following command on the front-end folder
 ```sh
