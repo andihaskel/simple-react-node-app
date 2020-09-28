@@ -6,9 +6,6 @@ const { expect } = require('chai');
 const app = require('../../index');
 const Event = require('../models/event.model');
 
-/**
- * root level hooks
- */
 
 describe('Events API', async () => {
   let dbEvents;
