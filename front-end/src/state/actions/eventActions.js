@@ -18,8 +18,6 @@ export const submitEventForm = (values, dispatch) => {
     toast.error(error.response.data.errors[0].messages[0])
   })
 
-
-
 };
 
 export default submitEventForm

@@ -8,8 +8,11 @@ import { Field, reduxForm, useSelector } from 'redux-form';
 import submitAction from '../../state/actions/eventActions';
 import TextInput from '../common/TextInput'
 import validate from '../../utils/validators/validateEvent'
-import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import moment from 'moment';
+import { connect } from 'react-redux';
+
 
 const useStyles = makeStyles((theme) => ({
   buttons: {
@@ -26,14 +29,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+const getInitialValues = () => {
+  return {
+    firstName: 'rajat'
+  };
+}
 
-const EventFormFields = props => {
+let EventFormFields = props => {
   const classes = useStyles();
-  const { handleSubmit, eventDate, pristine, reset, submitting, error} = props
+  const { handleSubmit, eventDate, pristine, reset, submitting, error } = props
 
+  // useEffect(() => {
+  //   initialize({ date: moment(new Date()).format('MM-DD-YYYY') });
+  // }, []);
   return (
     <React.Fragment>
-      <form onSubmit={handleSubmit(submitAction)}>
+      <form onSubmit={handleSubmit(submitAction)} initialValues={() => {return ({firstName: 'asd'})}}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} >
             <Field name="firstName" label="First Name" component={TextInput} type="text" />
@@ -45,7 +56,7 @@ const EventFormFields = props => {
             <Field name="email" label="Email" component={TextInput} type="email" />
           </Grid>
           <Grid item xs={6} sm={6}>
-            <Field name="date" component={DatePicker} type="any"/>
+            <Field name="date" component={DatePicker} type="any" />
           </Grid>
         </Grid>
         <div className={classes.buttons}>
@@ -71,14 +82,24 @@ const EventFormFields = props => {
 const mapStateToProps = (state) => {
   return {
     initialValues: {
-      eventDate: Date.now(),
-      firstName: "asd"
+      date: moment(new Date()).format('MM-DD-YYYY')
     }
   }
 }
-export default reduxForm({
+
+
+EventFormFields = reduxForm({
   form: 'eventForm',
   enableReinitialize: true,
   validate
 }, mapStateToProps)(EventFormFields);
 
+
+EventFormFields = connect(
+  () => ({
+    initialValues: {date: moment(new Date()).format('MM-DD-YYYY')}
+  })
+)(EventFormFields)
+
+
+export default EventFormFields

@@ -5,11 +5,12 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from '@material-ui/pickers';
+import moment from 'moment';
+
 
 
 
 export default function MaterialUIPickers(props) {
- console.log(props.input.value);
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
@@ -25,7 +26,7 @@ export default function MaterialUIPickers(props) {
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
-          value={!props.input.value ? new Date() : new Date(props.input.value)}
+          value={!props.input.value ? moment(new Date()).format('MM-DD-YYYY') : new Date(props.input.value)}
         />
     </MuiPickersUtilsProvider>
   );
