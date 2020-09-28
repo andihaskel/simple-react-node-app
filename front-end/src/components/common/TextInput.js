@@ -6,7 +6,7 @@ const TextInput = ({
     input,
     label,
     type,
-    meta: { touched, error, warning }
+    meta: { touched, error, warning, submitFailed }
 }) => (
         <div>
             <TextField errorText={touched && error}

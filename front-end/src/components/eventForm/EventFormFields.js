@@ -6,10 +6,10 @@ import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { Field, reduxForm, useSelector } from 'redux-form';
 import submitAction from '../../state/actions/eventActions';
-import store from '../../state/store'
-import moment from 'moment'
 import TextInput from '../common/TextInput'
 import validate from '../../utils/validators/validateEvent'
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const useStyles = makeStyles((theme) => ({
   buttons: {
@@ -20,18 +20,20 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
     width: "100%"
+  },
+  errorMessage: {
+    textAlign: 'center'
   }
 }))
 
 
 const EventFormFields = props => {
   const classes = useStyles();
-  const { handleSubmit, eventDate, pristine, reset, submitting} = props
+  const { handleSubmit, eventDate, pristine, reset, submitting, error} = props
 
   return (
     <React.Fragment>
       <form onSubmit={handleSubmit(submitAction)}>
-
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} >
             <Field name="firstName" label="First Name" component={TextInput} type="text" />
@@ -43,7 +45,7 @@ const EventFormFields = props => {
             <Field name="email" label="Email" component={TextInput} type="email" />
           </Grid>
           <Grid item xs={6} sm={6}>
-            <Field name="date" component={DatePicker} type="any" />
+            <Field name="date" component={DatePicker} type="any"/>
           </Grid>
         </Grid>
         <div className={classes.buttons}>
@@ -58,6 +60,10 @@ const EventFormFields = props => {
             Submit
             </Button>
         </div>
+        <div >
+          {error && <strong>{error}</strong>}
+        </div>
+        <ToastContainer />
       </form>
     </React.Fragment>
   );
@@ -71,7 +77,7 @@ const mapStateToProps = (state) => {
   }
 }
 export default reduxForm({
-  form: 'simple',
+  form: 'eventForm',
   enableReinitialize: true,
   validate
 }, mapStateToProps)(EventFormFields);
